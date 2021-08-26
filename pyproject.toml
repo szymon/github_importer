@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "github"
+version = "0.0.1"
+description = "Import python packages from github without installation*"
+authors = ["Szymon Rams <szymon.rams@icloud.com>"]
+license = "UNLICENCE"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
+isort = "^5.9.3"
+flake8 = "^3.9.2"
+mypy = "^0.910"
+
+[tool.black]
+line_length = 100
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

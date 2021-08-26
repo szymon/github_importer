@@ -36,7 +36,6 @@ class GithubImporter:
             spec._top_level = False
             spec._repo_owner, spec._repo_name = repo_owner, repo_name
             spec._url = cls._get_url(repo_owner, repo_name)
-            spec._directory = CONFIG.get("install_directory", "/tmp/tmp.uftSxrhdGN")
             spec._force_upgrade = CONFIG.get("force_upgrade", True)
             spec._verbose = CONFIG.get("verbose", False)
 
@@ -52,7 +51,7 @@ class GithubImporter:
         if spec._top_level:
             return spec
 
-        args = ["install", f"--target={spec._directory}"]
+        args = ["install"]
         if not spec._verbose:
             args.append("--quiet")
 
@@ -60,17 +59,7 @@ class GithubImporter:
             args.append("--upgrade")
         args.append(spec._url)
 
-        module_dir = spec._directory + "/" + spec._repo_name
-
-        if not os.path.isdir(module_dir) or spec._force_upgrade:
-            pip._internal.cli.main.main(args)
-
-        if spec._directory not in sys.path:
-            sys.path.insert(0, spec._directory)
-
-        # spec = importlib.util.spec_from_file_location(spec._repo_name)
-        # module = importlib.util.module_from_spec(spec)
-        # spec.loader.exec_module(module)
+        pip._internal.cli.main.main(args)
 
         module = importlib.import_module(spec._repo_name)
 
