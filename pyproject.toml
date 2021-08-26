@@ -3,7 +3,7 @@ name = "github"
 version = "0.0.1"
 description = "Import python packages from github without installation*"
 authors = ["Szymon Rams <szymon.rams@icloud.com>"]
-license = "UNLICENCE"
+license = "The Unlicense"
 
 [tool.poetry.dependencies]
 python = "^3.9"
